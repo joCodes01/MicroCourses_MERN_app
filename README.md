@@ -1,4 +1,4 @@
-#MicroCourses MERN app
+# MicroCourses MERN app
 
 **Purpose of this project:** To gain experience of using the MERN stack.
 
