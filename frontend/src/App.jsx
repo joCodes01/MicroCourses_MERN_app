@@ -2,31 +2,24 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 
+function CourseListItem() {
+  return (
+    <>
+      <h1>This is CourseListItem</h1>
+      <h1>Course title</h1>
+      <p>Short description to explain the course content.</p>
+      <p>0 hours</p>
+      <a>View course</a>
+    </>
+  );
+}
+
 function App() {
-  const [message, setMessage] = useState("");
-  const [items, setItems] = useState([]);
-  const [newItem, setNewItem] = useState("");
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:5999/")
-      .then((response) => {
-        setMessage(response.data);
-      })
-      .catch((error) => {
-        console.error("Oops, there is an error", error);
-      });
-    axios
-      .get("http://localhost:5999/items")
-      .then((response) => {
-        setItems(response.data);
-      })
-      .catch((error) => {
-        console.error("Oops, there is an error!", error);
-      });
-  }, []);
-
-  return <></>;
+  return (
+    <>
+      <h1>This is App</h1>
+    </>
+  );
 }
 
 export default App;
