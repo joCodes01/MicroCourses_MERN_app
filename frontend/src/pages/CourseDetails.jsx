@@ -12,20 +12,42 @@ export function CourseDetails() {
   return (
     <>
       <Navbar />
+      <NavLink to="/">
+        <p className="backhome">Back to home</p>
+      </NavLink>
       {course ? (
-        <section>
+        <section className="courseDetails-container">
           <div>
             <h1>{course.courseTitle}</h1>
-            <p>{course.longDescription}</p>
-            <p>{course.hours} hours</p>
-            <h2>Modules</h2>
-            <ul>
-              {course.Modules.map((module) => (
-                <li>{module.title}</li>
-              ))}
-            </ul>
+            <div className="detailsimage-container-mobile">
+              <img
+                className="detailsimagemobile"
+                src={course.image}
+                width="500px"
+              />
+            </div>
+
+            <div className="details-container">
+              <p className="longdescrip">{course.longDescription}</p>
+              <div className="modules-container">
+                <div>
+                  <h2>Modules</h2>
+                  <ul>
+                    {course.Modules.map((module) => (
+                      <li>{module.title}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="enrol-container">
+                  <p className="detailshours">{course.hours} hours</p>
+                  <button>Enrol</button>
+                </div>
+              </div>
+            </div>
           </div>
-          <img src={course.image} width="500px" />
+          <div className="detailsimage-container">
+            <img className="detailsimage" src={course.image} width="500px" />
+          </div>
         </section>
       ) : (
         <p>Sorry, course not found.</p>

@@ -120,7 +120,7 @@ export const CourseData = [
     courseTitle: "Database Design Fundamentals",
     id: "006",
     shortDescription:
-      "Design efficient, scalable databases with well-structured schemas and relationships.",
+      "Design efficient, scalable databases with structured schemas and relationships.",
     longDescription:
       "This micro course covers the principles behind effective database design, starting with the differences between relational and non-relational databases. You\'ll learn how to design schemas, apply normalization techniques, and model relationships and references correctly. The course also highlights common database design mistakes and how to avoid them, helping you create data structures that are maintainable, performant, and aligned with application requirements.",
     Modules: [

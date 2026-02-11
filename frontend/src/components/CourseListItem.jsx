@@ -3,13 +3,31 @@ import { NavLink } from "react-router-dom";
 
 function CourseListItem({ coursetitle, shortdescription, hours, image, id }) {
   return (
-    <div>
-      <img src={image} width="400px" alt={coursetitle} />
-      <h2>{coursetitle}</h2>
-      <p>{shortdescription}</p>
-      <p>{hours} hours</p>
-      <NavLink to={`/coursedetails/${id}`}>View course</NavLink>
-    </div>
+    <>
+      <NavLink to={`/coursedetails/${id}`}>
+        <div className="coursecard">
+          <div>
+            <div className="cardimage-container">
+              <img
+                className="courseimage"
+                src={image}
+                width="400px"
+                alt={coursetitle}
+              />
+            </div>
+            <h2>{coursetitle}</h2>
+          </div>
+
+          <div>
+            <p>{shortdescription}</p>
+            <div className="cardfooter">
+              <p>{hours} hours</p>
+              <p>View course</p>
+            </div>
+          </div>
+        </div>
+      </NavLink>
+    </>
   );
 }
 

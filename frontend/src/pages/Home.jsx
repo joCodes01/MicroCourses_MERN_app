@@ -12,20 +12,20 @@ function Home() {
   return (
     <>
       <Navbar />
-      {/* <h1>This is home Page</h1>
-      <NavLink to="/coursedetails">Course details</NavLink> */}
-      {CourseData.map((course) => {
-        return (
-          <CourseListItem
-            coursetitle={course.courseTitle}
-            shortdescription={course.shortDescription}
-            hours={course.hours}
-            image={course.image}
-            key={course.id}
-            id={course.id}
-          />
-        );
-      })}
+      <section className="courselistcontainer">
+        {CourseData.map((course) => {
+          return (
+            <CourseListItem
+              coursetitle={course.courseTitle}
+              shortdescription={course.shortDescription}
+              hours={course.hours}
+              image={course.image}
+              key={course.id}
+              id={course.id}
+            />
+          );
+        })}
+      </section>
     </>
   );
 }
