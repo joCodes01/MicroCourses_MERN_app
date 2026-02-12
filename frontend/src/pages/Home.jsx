@@ -12,6 +12,7 @@ function Home() {
   return (
     <>
       <Navbar />
+      <h1 className="currentcourses">Current courses</h1>
       <section className="courselistcontainer">
         {CourseData.map((course) => {
           return (
