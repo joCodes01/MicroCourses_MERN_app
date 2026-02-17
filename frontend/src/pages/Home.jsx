@@ -3,17 +3,39 @@ import { NavLink } from "react-router-dom";
 import { Navbar } from "/src/components/Navbar.jsx";
 import CourseData from "/src/assets/data/CourseData.jsx";
 import CourseListItem from "/src/components/CourseListItem.jsx";
+import { useState, useEffect } from "react";
 
 function Home() {
-  // console.log(CourseData);
+  //simulate loading data from backend API with a promise for component 2.
 
-  console.log(CourseData[1].courseTitle);
+  const [courses, setCourses] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  function getCourseData(theData) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const courseList = theData;
+
+        resolve(courseList);
+      }, 1000);
+    });
+  }
+
+  useEffect(() => {
+    getCourseData(CourseData).then((data) => {
+      setCourses(data);
+      setIsLoading(false);
+    });
+  }, []);
+
+  if (isLoading) return <p>Loading...</p>;
 
   return (
-    <>
+    <div className="homepage-container">
       <Navbar />
       <h1 className="currentcourses">Current courses</h1>
-      <section className="courselistcontainer">
+
+      <div className="courselistcontainer">
         {CourseData.map((course) => {
           return (
             <CourseListItem
@@ -26,8 +48,8 @@ function Home() {
             />
           );
         })}
-      </section>
-    </>
+      </div>
+    </div>
   );
 }
 export default Home;

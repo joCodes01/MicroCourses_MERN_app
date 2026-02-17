@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 function CourseListItem({ coursetitle, shortdescription, hours, image, id }) {
   return (
     <>
-      <NavLink to={`/coursedetails/${id}`}>
+      <NavLink className="nav-link" to={`/coursedetails/${id}`}>
         <div className="coursecard">
           <div>
             <div className="cardimage-container">
@@ -15,14 +15,14 @@ function CourseListItem({ coursetitle, shortdescription, hours, image, id }) {
                 alt={coursetitle}
               />
             </div>
-            <h2>{coursetitle}</h2>
+            <h2 className="cardtitle">{coursetitle}</h2>
+            <p className="shortdescription">{shortdescription}</p>
           </div>
 
           <div>
-            <p>{shortdescription}</p>
             <div className="cardfooter">
               <p>{hours} hours</p>
-              <p>View course</p>
+              <p className="link-style">View course</p>
             </div>
           </div>
         </div>
