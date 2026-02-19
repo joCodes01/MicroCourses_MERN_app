@@ -64,7 +64,7 @@ export function CourseDetails() {
               <div>
                 <h2>Modules</h2>
                 <ul>
-                  {course.Modules.map((module) => (
+                  {course.modules.map((module) => (
                     <li>{module.title}</li>
                   ))}
                 </ul>
