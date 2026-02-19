@@ -225,10 +225,16 @@ app.put("/coursedata/:id", (req, res) => {
     course.modules = req.body.modules;
     course.hours = req.body.hours;
     course.image = req.body.image;
-    res.json(course); // Return the updated expense
+    res.json(course); // Return the updated course
   } else {
     res.status(404).json({ message: "Course not found" }); // Return 404 if not found
   }
+});
+
+app.delete("/coursedata/:id", (req, res) => {
+  const id = req.params.id;
+  CourseData = CourseData.filter((c) => c.id !== id); // Remove the expense from the list
+  res.status(204).send(); // Return 204 No Content
 });
 
 app.listen(port, () => {
