@@ -189,6 +189,7 @@ app.get("/coursedata/:id", (req, res) => {
   }
 });
 
+//create new course id
 function newCourseId() {
   let id = CourseData.length + 1;
   while (
@@ -198,7 +199,7 @@ function newCourseId() {
   }
   return String(id).padStart(3, "0");
 }
-
+//Add new course
 app.post("/coursedata", (req, res) => {
   const newCourse = {
     id: newCourseId(), // Generate a new ID
@@ -211,6 +212,23 @@ app.post("/coursedata", (req, res) => {
   };
   CourseData.push(newCourse);
   res.status(201).json(newCourse); // Return the newly created course with a 201 status code
+});
+
+//update a course
+app.put("/coursedata/:id", (req, res) => {
+  const id = req.params.id;
+  const course = CourseData.find((c) => c.id === id); // Find the expense by ID
+  if (course) {
+    course.courseTitle = req.body.courseTitle; // Update the course title
+    course.shortDescription = req.body.shortDescription;
+    course.longDescription = req.body.longDescription;
+    course.modules = req.body.modules;
+    course.hours = req.body.hours;
+    course.image = req.body.image;
+    res.json(course); // Return the updated expense
+  } else {
+    res.status(404).json({ message: "Course not found" }); // Return 404 if not found
+  }
 });
 
 app.listen(port, () => {
