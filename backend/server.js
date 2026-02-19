@@ -1,13 +1,20 @@
-import imageVisualDesign from "/src/assets/images/visualDesign.png";
-import imageFrontend from "/src/assets/images/frontend.png";
-import imageBackend from "/src/assets/images/backend.png";
-import imageSecurity from "/src/assets/images/security.png";
-import imagePerformance from "/src/assets/images/performance.png";
-import imageDatabase from "/src/assets/images/database.png";
-import imageDataDrivenDesign from "/src/assets/images/dataDrivenDesign.png";
-import imageUX from "/src/assets/images/ux.png";
+const express = require("express");
+const cors = require("cors");
+const app = express();
+const port = 5999;
 
-export const CourseData = [
+//Middleware
+app.use(cors());
+app.use(express.json());
+app.use("/images", express.static("images"));
+
+//Define a simple route
+app.get("/", (req, res) => {
+  res.send("Welcome to MicroCourses website");
+});
+
+//Array of data
+let CourseData = [
   {
     courseTitle: "Visual Design Systems",
     id: "001",
@@ -22,7 +29,7 @@ export const CourseData = [
       { title: "Weight, spacing, and alignment." },
     ],
     hours: "12",
-    image: imageVisualDesign,
+    image: "visualDesign.png",
   },
   {
     courseTitle: "Front-End Design & Development",
@@ -47,7 +54,7 @@ export const CourseData = [
       },
     ],
     hours: "28",
-    image: imageFrontend,
+    image: "frontend.png",
   },
   {
     courseTitle: "Back-End Development & APIs",
@@ -73,7 +80,7 @@ export const CourseData = [
       },
     ],
     hours: "28",
-    image: imageBackend,
+    image: "backend.png",
   },
   {
     courseTitle: "Web Security & Best Practices",
@@ -95,7 +102,7 @@ export const CourseData = [
       },
     ],
     hours: "12",
-    image: imageSecurity,
+    image: "security.png",
   },
   {
     courseTitle: "Front-End Performance",
@@ -114,7 +121,7 @@ export const CourseData = [
       { title: "Image optimization." },
     ],
     hours: "8",
-    image: imagePerformance,
+    image: "performance.png",
   },
   {
     courseTitle: "Database Design Fundamentals",
@@ -130,7 +137,7 @@ export const CourseData = [
       { title: "Common Database Design Mistakes." },
     ],
     hours: "8",
-    image: imageDatabase,
+    image: "database.png",
   },
   {
     courseTitle: "Data-Driven Interface Design",
@@ -146,7 +153,7 @@ export const CourseData = [
       { title: "Real-Time & Event-Driven Interfaces." },
     ],
     hours: "8",
-    image: imageDataDrivenDesign,
+    image: "dataDrivenDesign.png",
   },
   {
     courseTitle: "UI/UX Principles for Developers",
@@ -162,8 +169,26 @@ export const CourseData = [
       { title: "Balancing information density and clarity." },
     ],
     hours: "6",
-    image: imageUX,
+    image: "ux.png",
   },
 ];
 
-export default CourseData;
+//Route to get all courses
+app.get("/coursedata", (req, res) => {
+  res.json(CourseData);
+});
+//get courses by id
+app.get("/coursedata/:id", (req, res) => {
+  const id = req.params.id;
+  const course = CourseData.find((e) => e.id === id);
+
+  if (course) {
+    res.json(course);
+  } else {
+    res.status(404).json({ message: "Course not found" });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost: ${port}`);
+});
