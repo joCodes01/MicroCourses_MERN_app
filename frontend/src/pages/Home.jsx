@@ -1,34 +1,54 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Navbar } from "/src/components/Navbar.jsx";
-import CourseData from "/src/assets/data/CourseData.jsx";
+// import CourseData from "/src/assets/data/CourseData.jsx";
 import CourseListItem from "/src/components/CourseListItem.jsx";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 function Home() {
-  //simulate loading data from backend API with a promise for component 2.
-
   const [courses, setCourses] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  function getCourseData(theData) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const courseList = theData;
+  //SIMULATE LOADING DATA FROM BACKEND API FOR COMPONENT 2.
 
-        resolve(courseList);
-      }, 1000);
-    });
-  }
+  // function getCourseData(theData) {
+  //   return new Promise((resolve) => {
+  //     setTimeout(() => {
+  //       const courseList = theData;
+
+  //       resolve(courseList);
+  //     }, 1000);
+  //   });
+  // }
+
+  // useEffect(() => {
+  //   getCourseData(CourseData).then((data) => {
+  //     setCourses(data);
+  //     setIsLoading(false);
+  //   });
+  // }, []);
+
+  //GET DATA FROM EXPRESS.JS
 
   useEffect(() => {
-    getCourseData(CourseData).then((data) => {
-      setCourses(data);
-      setIsLoading(false);
-    });
+    axios
+      .get("http://localhost:5999/coursedata")
+      .then((response) => {
+        setCourses(response.data);
+        setIsLoading(false);
+        console.log(courses);
+      })
+      .catch((error) => {
+        console.log("Oops there has been an error: " + error);
+        setErrorMessage("oops there has been an error: " + error);
+        setIsLoading(false);
+      });
   }, []);
 
   if (isLoading) return <p>Loading...</p>;
+  if (errorMessage) return <p>Sorry, there is an error: {errorMessage}</p>;
 
   return (
     <div className="homepage-container">
@@ -36,13 +56,13 @@ function Home() {
       <h1 className="currentcourses">Current courses</h1>
 
       <div className="courselistcontainer">
-        {CourseData.map((course) => {
+        {courses.map((course) => {
           return (
             <CourseListItem
               coursetitle={course.courseTitle}
               shortdescription={course.shortDescription}
               hours={course.hours}
-              image={course.image}
+              image={"http://localhost:5999/images/" + course.image}
               key={course.id}
               id={course.id}
             />

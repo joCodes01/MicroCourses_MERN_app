@@ -1,35 +1,55 @@
 import React from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { Navbar } from "/src/components/Navbar.jsx";
-import CourseData from "/src/assets/data/CourseData.jsx";
+// import CourseData from "/src/assets/data/CourseData.jsx";
 import { useState, useEffect } from "react";
 import CodeBlocks from "/src/assets/images/code-blocks.png";
+import axios from "axios";
 
 export function CourseDetails() {
   const { id } = useParams();
 
   const [course, setCourse] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  //simulate loading data from backend API with a promise for component 2.
+  //SIMULATE LOADING DATA FROM BACKEND API FOR COMPONENT 2.
 
-  function getCourseById(id) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const course = CourseData.find((course) => course.id == id);
-        resolve(course);
-      }, 1000);
-    });
-  }
+  // function getCourseById(id) {
+  //   return new Promise((resolve) => {
+  //     setTimeout(() => {
+  //       const course = CourseData.find((course) => course.id == id);
+  //       resolve(course);
+  //     }, 1000);
+  //   });
+  // }
+
+  // useEffect(() => {
+  //   getCourseById(id).then((data) => {
+  //     setCourse(data);
+  //     setIsLoading(false);
+  //   });
+  // }, [id]);
+
+  //GET DATA FROM EXPRESS.JS
 
   useEffect(() => {
-    getCourseById(id).then((data) => {
-      setCourse(data);
-      setIsLoading(false);
-    });
+    axios
+      .get(`http://localhost:5999/coursedata/${id}`)
+      .then((response) => {
+        setCourse(response.data);
+        setIsLoading(false);
+        console.log("Test render" + course);
+      })
+      .catch((error) => {
+        console.log("Oops there has been an error: " + error);
+        setErrorMessage("oops there has been an error: " + error);
+        setIsLoading(false);
+      });
   }, [id]);
 
   if (isLoading) return <p>Loading...</p>;
+  if (errorMessage) return <p>Sorry, there is an error: {errorMessage}</p>;
 
   return (
     <>
@@ -45,7 +65,7 @@ export function CourseDetails() {
               <div className="detailsimage-container-mobile">
                 <img
                   className="detailsimagemobile"
-                  src={course.image}
+                  src={"http://localhost:5999/images/" + course.image}
                   width="500px"
                 />
               </div>
@@ -54,7 +74,7 @@ export function CourseDetails() {
                 <div className="detailsimage-container">
                   <img
                     className="detailsimage"
-                    src={course.image}
+                    src={"http://localhost:5999/images/" + course.image}
                     width="500px"
                   />
                 </div>

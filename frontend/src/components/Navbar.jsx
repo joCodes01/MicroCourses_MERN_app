@@ -6,7 +6,7 @@ export function Navbar() {
   return (
     <nav className="navigation">
       <NavLink to="/">
-        <img class="logo" src={Logo} alt="" width="1585px" height="253px" />
+        <img className="logo" src={Logo} alt="" width="1585px" height="253px" />
       </NavLink>
       {/* <NavLink to="/">Home</NavLink> */}
     </nav>
