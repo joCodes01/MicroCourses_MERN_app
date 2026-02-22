@@ -41,14 +41,14 @@ function Home() {
         console.log(courses);
       })
       .catch((error) => {
-        console.log("Oops there has been an error: " + error);
-        setErrorMessage("oops there has been an error: " + error);
+        console.log(error);
+        setErrorMessage(error.message);
         setIsLoading(false);
       });
   }, []);
 
   if (isLoading) return <p>Loading...</p>;
-  if (errorMessage) return <p>Sorry, there is an error: {errorMessage}</p>;
+  if (errorMessage) return <p>{"Error: " + errorMessage}</p>;
 
   return (
     <div className="homepage-container">
