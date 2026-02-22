@@ -206,8 +206,6 @@ app.get("/coursedata/:id", async (req, res) => {
     console.log("Error, course data not found.");
     res.status(500).json({ error: "Error fetching data." });
   }
-  // const id = req.params.id;
-  // const course = CourseData.find((e) => e.id === id);
 });
 
 //Add new course
@@ -224,26 +222,33 @@ app.post("/coursedata", async (req, res) => {
 });
 
 //update a course
-app.put("/coursedata/:id", (req, res) => {
-  const id = req.params.id;
-  const course = CourseData.find((c) => c.id === id); // Find the expense by ID
-  if (course) {
-    course.courseTitle = req.body.courseTitle; // Update the course title
-    course.shortDescription = req.body.shortDescription;
-    course.longDescription = req.body.longDescription;
-    course.modules = req.body.modules;
-    course.hours = req.body.hours;
-    course.image = req.body.image;
-    res.json(course); // Return the updated course
-  } else {
-    res.status(404).json({ message: "Course not found" }); // Return 404 if not found
+
+app.put("/coursedata/:id", async (req, res) => {
+  try {
+    const course = await CourseData.findOneAndUpdate(
+      { id: req.params.id },
+      req.body,
+      { new: true },
+    );
+    if (course) {
+      res.json(course);
+    } else {
+      res.status(404).json({ message: "Course not found" });
+    }
+  } catch (err) {
+    res.status(500).json({ error: "Failed to update the course" });
   }
 });
 
-app.delete("/coursedata/:id", (req, res) => {
-  const id = req.params.id;
-  CourseData = CourseData.filter((c) => c.id !== id); // Remove the expense from the list
-  res.status(204).send(); // Return 204 No Content
+//Delete a course
+
+app.delete("/coursedata/:id", async (req, res) => {
+  try {
+    await CourseData.findOneAndDelete({ id: req.params.id });
+    res.status(204).send();
+  } catch (err) {
+    res.status(500).json({ error: "Faied to delete course" });
+  }
 });
 
 app.listen(port, () => {
