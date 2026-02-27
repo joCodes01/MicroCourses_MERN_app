@@ -34,7 +34,7 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5999/coursedata")
+      .get("http://localhost:5999/courses")
       .then((response) => {
         setCourses(response.data);
         setIsLoading(false);
@@ -53,7 +53,12 @@ function Home() {
   return (
     <div className="homepage-container">
       <Navbar />
-      <h1 className="currentcourses">Current courses</h1>
+      <div className="home-title-container">
+        <h1 className="currentcourses">Current courses</h1>
+        <NavLink to="/addnewcourse">
+          <p className="addnewcourse">AddNewCourse</p>
+        </NavLink>
+      </div>
 
       <div className="courselistcontainer">
         {courses.map((course) => {
