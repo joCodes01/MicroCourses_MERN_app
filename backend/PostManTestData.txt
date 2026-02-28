@@ -2,18 +2,18 @@ POSTMAN TEST DATA
 
 //POST
 
-{ "courseTitle": "Visual Design Systems", "id": "999", "shortDescription":
-"Create scalable, readable visual systems for consistent interfaces across
-devices.", "longDescription": "This micro course focuses on the foundations of
-visual design for digital products, with an emphasis on typography and layout
-systems that scale. You'll learn how to create effective type scales, pair fonts
-thoughtfully, and adapt text responsively across screen sizes. The course also
-covers legibility best practices, visual hierarchy, and emphasis through styling
-choices. By mastering weight, spacing, and alignment, you'll be able to design
-interfaces that communicate structure and intent clearly while maintaining
-consistency across an entire product.", "modules": [ { "title": "Type scales,
-pairing, and responsive text." }, { "title": "Legibility across devices." }, {
-"title": "Styling for hierarchy and emphasis." }, { "title": "Weight, spacing,
-and alignment." } ], "hours": "12", "image": "ux.png" }
+{
+    "courseTitle": "new course", 
+    "shortDescription": "this is the newest course", "longDescription": "the course is lots of fun and you will enjoy it", 
+    "Modules": [
+        {"title":"module one"}, 
+        {"title": "module two"}, 
+        {"title":"module three"}, 
+        {"title": "module four"}], 
+    "hours": "6", 
+    "image":"newCourse.webp",
+    "instructor":"New teacher", 
+    "category":"Technology"
+}
 
 

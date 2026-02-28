@@ -62,14 +62,16 @@ function Home() {
 
       <div className="courselistcontainer">
         {courses.map((course) => {
+          // console.log("id:" + course.id);
+          console.log("_id:" + course._id);
           return (
             <CourseListItem
               coursetitle={course.courseTitle}
               shortdescription={course.shortDescription}
               hours={course.hours}
               image={"http://localhost:5999/images/" + course.image}
-              key={course.id}
-              id={course.id}
+              key={course._id}
+              id={course._id}
             />
           );
         })}

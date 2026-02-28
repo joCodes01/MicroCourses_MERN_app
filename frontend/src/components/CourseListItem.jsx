@@ -6,20 +6,20 @@ function CourseListItem({ coursetitle, shortdescription, hours, image, id }) {
     <>
       <NavLink className="nav-link" to={`/coursedetails/${id}`}>
         <div className="coursecard">
-          <div>
-            <div className="cardimage-container">
-              <img
-                className="courseimage"
-                src={image}
-                width="400px"
-                alt={coursetitle}
-              />
-            </div>
-            <h2 className="cardtitle">{coursetitle}</h2>
-            <p className="shortdescription">{shortdescription}</p>
+          <div className="cardimage-container">
+            <img
+              className="courseimage"
+              src={image}
+              width="400px"
+              alt={coursetitle}
+            />
           </div>
 
-          <div>
+          <div className="card-info">
+            <div>
+              <h2 className="cardtitle">{coursetitle}</h2>
+              <p className="shortdescription">{shortdescription}</p>
+            </div>
             <div className="cardfooter">
               <p>{hours} hours</p>
               <p className="link-style">View course</p>

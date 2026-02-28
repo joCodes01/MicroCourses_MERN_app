@@ -20,7 +20,7 @@ const CourseData = require("./models/CourseData");
 //Route to get all courses
 app.get("/courses", async (req, res) => {
   try {
-    const courses = await CourseData.find();
+    const courses = await CourseData.find().sort({ courseTitle: 1 });
     res.json(courses);
   } catch (err) {
     res.status(500).json({ error: "Couldn't fetch courses" });
@@ -33,7 +33,7 @@ app.get("/courses", async (req, res) => {
 
 app.get("/courses/:id", async (req, res) => {
   try {
-    const course = await CourseData.findOne({ id: req.params.id });
+    const course = await CourseData.findById(req.params.id);
 
     if (course) {
       console.log("Course data found.");

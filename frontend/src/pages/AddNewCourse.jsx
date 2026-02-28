@@ -15,7 +15,7 @@ export function AddNewCourse() {
   const [module2, setModule2] = useState(null);
   const [module3, setModule3] = useState(null);
   const [module4, setModule4] = useState(null);
-  const [imageFileName, setImageFileName] = useState(null);
+  const [imageFileName, setImageFileName] = useState("newCourse.png");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +27,6 @@ export function AddNewCourse() {
       { title: module3 },
       { title: module4 },
     );
-    console.log(modules);
 
     axios.post("http://localhost:5999/courses", {
       courseTitle: courseTitle,
@@ -162,6 +161,7 @@ export function AddNewCourse() {
                 type="text"
                 name="imagename"
                 id="imagename"
+                value={imageFileName}
                 onChange={(e) => setImageFileName(e.target.value)}
               ></input>
             </div>
