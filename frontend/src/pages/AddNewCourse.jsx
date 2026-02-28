@@ -30,10 +30,13 @@ export function AddNewCourse() {
 
     axios.post("http://localhost:5999/courses", {
       courseTitle: courseTitle,
+      title: courseTitle,
       shortDescription: shortDescription,
+      description: shortDescription,
       longDescription: longDescription,
       modules: modules,
       hours: hours,
+      duration: hours,
       image: imageFileName,
       instructor: instructor,
       category: category,

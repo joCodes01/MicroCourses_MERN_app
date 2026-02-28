@@ -66,9 +66,9 @@ function Home() {
           console.log("_id:" + course._id);
           return (
             <CourseListItem
-              coursetitle={course.courseTitle}
-              shortdescription={course.shortDescription}
-              hours={course.hours}
+              coursetitle={course.title}
+              shortdescription={course.description}
+              hours={course.duration}
               image={"http://localhost:5999/images/" + course.image}
               key={course._id}
               id={course._id}

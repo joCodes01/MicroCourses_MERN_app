@@ -20,7 +20,7 @@ const CourseData = require("./models/CourseData");
 //Route to get all courses
 app.get("/courses", async (req, res) => {
   try {
-    const courses = await CourseData.find().sort({ courseTitle: 1 });
+    const courses = await CourseData.find().sort({ title: 1 });
     res.json(courses);
   } catch (err) {
     res.status(500).json({ error: "Couldn't fetch courses" });
