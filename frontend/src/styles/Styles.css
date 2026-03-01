@@ -50,6 +50,7 @@ html {
   --mc-title-blue: #1f3b59;
   --mc-background-color: #ebedf4;
   --mc-link-blue: #007ce9;
+  --mc-text: #5b7085;
 }
 a {
   text-decoration: none;
@@ -73,19 +74,22 @@ h2 {
   color: var(--mc-title-blue);
 }
 p {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 1em;
   margin: 0 0 0.5rem 0;
+  color: var(--mc-text);
 }
 li {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 1rem;
   padding-bottom: 1rem;
+  color: var(--mc-text);
 }
 ul {
   padding: 0;
   margin-top: 1rem;
 }
+
 input,
 textarea {
   border: 1px solid rgb(189, 188, 188);
@@ -97,6 +101,10 @@ textarea {
   width: 300px;
   height: auto;
 }
+.error-message {
+  font-weight: 600;
+  color: red;
+}
 
 /* HOME PAGE*/
 
@@ -104,7 +112,7 @@ textarea {
   display: flex;
   align-items: end;
   justify-content: space-between;
-  margin: 3rem 0;
+  margin: 3rem 0 1rem 0;
 }
 .home-title-container h1,
 .home-title-container p {
@@ -186,16 +194,25 @@ textarea {
   text-decoration: underline;
   font-weight: 500;
   text-underline-offset: 0.15rem;
+  padding: 0.5rem;
+}
+.hours {
+  color: var(--mc-title-blue);
 }
 
 /* COURSE DETAILS PAGE */
+.coursedetailspage-container {
+  max-width: fit-content;
+  margin: 0 auto;
+}
 
 .courseDetails-container {
   background-color: white;
-  margin: 1rem auto;
+  /* margin: 1rem auto; */
   border-radius: 20px;
   box-shadow: 5px 5px 20px lightgrey;
   overflow: hidden;
+  max-width: 70rem;
 }
 .detailsimage-container {
   width: 100%;
@@ -205,8 +222,7 @@ textarea {
   align-items: center;
 }
 .details-title {
-  margin: 1rem 2rem;
-  margin-bottom: 2rem;
+  margin: 2rem 2rem;
 }
 .coursedetails {
   display: flex;
@@ -215,11 +231,7 @@ textarea {
   width: 100%;
   object-fit: cover;
 }
-.modules-flex {
-  display: flex;
-  flex-direction: column;
-  margin: 0 2rem 2rem 2rem;
-}
+
 .enrol-button,
 .submit-button {
   width: 100%;
@@ -236,8 +248,15 @@ textarea {
   display: flex;
   flex-direction: column;
   padding: 0 2rem;
-  flex: 1.2;
   margin-bottom: 2rem;
+  flex: 1;
+}
+.modules-flex {
+  display: flex;
+  flex-direction: column;
+  margin: 0 2rem 2rem 2rem;
+  justify-content: space-between;
+  flex: 1.5;
 }
 .modules-container {
   display: flex;
@@ -245,16 +264,16 @@ textarea {
   justify-content: space-between;
   padding: 2rem 3rem;
   background-color: rgb(244, 247, 255);
-  flex: 0.8;
   border-radius: 20px;
 }
 .detailshours {
-  font-weight: 400;
+  margin-top: 1.5rem;
 }
 .short-description {
   font-weight: 500;
   font-size: 1.2rem;
   margin-bottom: 1rem;
+  color: var(--mc-title-blue);
 }
 .long-description {
   line-height: 1rem;
@@ -266,8 +285,13 @@ textarea {
 }
 
 /* ADD NEW COURSE PAGE */
+.addnewcoursepage-container {
+  margin: 0 auto;
+  /* width: fit-content; */
+  max-width: 50em;
+}
 
-form > div {
+form > div > div {
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
@@ -280,10 +304,13 @@ form > div > label {
   color: var(--mc-title-blue);
   margin-bottom: 0.2rem;
 }
+#longDescription {
+  height: 5rem;
+}
 
 /* MEDIA QUERIES */
 
-@media screen and (max-width: 1120px) {
+@media screen and (max-width: 950px) {
   .courselistcontainer {
     grid-template-columns: 1fr 1fr;
   }
@@ -293,12 +320,21 @@ form > div > label {
   .enrol-button {
     margin-top: 3rem;
   }
+  .coursedetailspage-container {
+    margin: 0 1rem;
+  }
 }
+/* 
+@media screen and (max-width: 950px) {
+  .coursedetailspage-container {
+    margin: 0 2rem;
+  }
+} */
 
 @media screen and (max-width: 700px) {
-  body {
-    padding: 2rem 2rem;
-  }
+  /* body {
+    padding: 2rem 0;
+  } */
   .courselistcontainer {
     grid-template-columns: 1fr;
     margin-left: auto;
@@ -320,4 +356,16 @@ form > div > label {
     margin-left: auto;
     margin-right: auto;
   }
+  .coursedetailspage-container {
+    margin: 0 1rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .detailsimage-container {
+    height: 100%;
+  }
+  /* .coursedetailspage-container {
+    margin: 0 3rem;
+  } */
 }

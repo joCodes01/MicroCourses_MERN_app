@@ -11,8 +11,6 @@ export function CourseDetails() {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  //SIMULATE LOADING DATA FROM BACKEND API FOR COMPONENT 2.
-
   useEffect(() => {
     axios
       .get(`http://localhost:5999/courses/${id}`)
@@ -22,17 +20,17 @@ export function CourseDetails() {
         console.log("Test render" + course);
       })
       .catch((error) => {
-        console.log("Oops there has been an error: " + error);
-        setErrorMessage("oops there has been an error: " + error);
+        console.error("Error, unable to find data for this course: " + error);
+        setErrorMessage("Unable to find this course: " + error);
         setIsLoading(false);
       });
   }, [id]);
 
   if (isLoading) return <p>Loading...</p>;
-  if (errorMessage) return <p>Sorry, there is an error: {errorMessage}</p>;
+  if (errorMessage) return <p>{errorMessage}</p>;
 
   return (
-    <>
+    <div className="coursedetailspage-container">
       <Navbar />
       <NavLink to="/">
         <p className="backhome">Back to home</p>
@@ -47,10 +45,10 @@ export function CourseDetails() {
             />
           </div>
 
-          <h1 className="details-title">{course.courseTitle}</h1>
+          <h1 className="details-title">{course.title}</h1>
           <div className="coursedetails">
             <div className="details-container">
-              <p className="short-description">{course.shortDescription}</p>
+              <p className="short-description">{course.description}</p>
               <p className="long-description">{course.longDescription}</p>
             </div>
 
@@ -63,7 +61,7 @@ export function CourseDetails() {
                       <li>{module.title}</li>
                     ))}
                   </ul>
-                  <p className="detailshours">{course.hours} hours</p>
+                  <p className="detailshours hours">{course.duration} hours</p>
                 </div>
               </div>
               <button className="enrol-button">Enrol</button>
@@ -73,7 +71,7 @@ export function CourseDetails() {
       ) : (
         <p>Sorry, course not found.</p>
       )}
-    </>
+    </div>
   );
 }
 export default CourseDetails;

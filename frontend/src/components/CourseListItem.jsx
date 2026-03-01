@@ -21,7 +21,7 @@ function CourseListItem({ coursetitle, shortdescription, hours, image, id }) {
               <p className="shortdescription">{shortdescription}</p>
             </div>
             <div className="cardfooter">
-              <p>{hours} hours</p>
+              <p className="hours">{hours} hours</p>
               <p className="link-style">View course</p>
             </div>
           </div>

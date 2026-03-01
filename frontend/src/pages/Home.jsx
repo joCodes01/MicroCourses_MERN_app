@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Navbar } from "/src/components/Navbar.jsx";
-// import CourseData from "/src/assets/data/CourseData.jsx";
 import CourseListItem from "/src/components/CourseListItem.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -10,25 +9,6 @@ function Home() {
   const [courses, setCourses] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-
-  //SIMULATE LOADING DATA FROM BACKEND API FOR COMPONENT 2.
-
-  // function getCourseData(theData) {
-  //   return new Promise((resolve) => {
-  //     setTimeout(() => {
-  //       const courseList = theData;
-
-  //       resolve(courseList);
-  //     }, 1000);
-  //   });
-  // }
-
-  // useEffect(() => {
-  //   getCourseData(CourseData).then((data) => {
-  //     setCourses(data);
-  //     setIsLoading(false);
-  //   });
-  // }, []);
 
   //GET DATA FROM EXPRESS.JS
 
@@ -41,14 +21,14 @@ function Home() {
         console.log(courses);
       })
       .catch((error) => {
-        console.log(error);
-        setErrorMessage(error.message);
+        console.log("Error, unable to get course data: " + error);
+        setErrorMessage("Unable to get course data, please try later.");
         setIsLoading(false);
       });
   }, []);
 
   if (isLoading) return <p>Loading...</p>;
-  if (errorMessage) return <p>{"Error: " + errorMessage}</p>;
+  if (errorMessage) return <p>{errorMessage}</p>;
 
   return (
     <div className="homepage-container">
